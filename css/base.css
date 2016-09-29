@@ -11,10 +11,30 @@
 .pokemonList li:hover {
   background-color: lightgray;
 }
+
 .pokemonInfo {
-  float:right;
-  margin-right: 500px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
+.routeChange-enter {
+  left: 100%;
+}
+.routeChange-enter.routeChange-enter-active {
+  left: 0;
+  transition: left 600ms ease;
+}
+.routeChange-leave {
+  left: 0;
+}
+.routeChange-leave.routeChange-leave-active {
+  left: -100%;
+  transition: left 600ms ease;
+}
+
+
 body {
   background: #fff;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;

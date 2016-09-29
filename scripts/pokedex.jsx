@@ -2,9 +2,10 @@ import PokemonInfo from './pokemonInfo.jsx'
 import PokemonList from './pokemonList.jsx'
 import PokemonSearch from './pokemonSearch.jsx'
 import React from 'react'
-import {Router, Route, Link, hashHistory} from 'react-router'
+import {Router, Route, Link, hashHistory, IndexRoute} from 'react-router'
 import ReactDOM from 'react-dom'
 import $ from 'jquery'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 var Pokedex = React.createClass({
   getInitialState: function() {
@@ -39,6 +40,9 @@ var Pokedex = React.createClass({
      })
      this.setState({filteredList: filteredList});
   },
+  getSegment: function() {
+    return this.props.location.pathname.split('/')[1] || 'root';
+  },
   render: function(){
     return (
       <div className = "pokedex">
@@ -49,17 +53,27 @@ var Pokedex = React.createClass({
           </div>
 
           <div className="col-md-offset-1 col-md-6">
-          {this.props.children}
+            <ReactCSSTransitionGroup transitionName="routeChange" 
+              transitionEnterTimeout={600} transitionLeaveTimeout={600}>
+               {React.cloneElement(this.props.children, { key: this.getSegment() })}
+            </ReactCSSTransitionGroup>
           </div>
       </div>
     );
   }
 });
 
+var PokemonIndex = React.createClass({
+  render() {
+    return null
+  }
+})
+
 
 ReactDOM.render(
   <Router history={hashHistory}>
     <Route path="/" component={Pokedex}>
+      <IndexRoute component={PokemonIndex} />
       <Route path=":facts" component={PokemonInfo}></Route>
     </Route>
   </Router>,

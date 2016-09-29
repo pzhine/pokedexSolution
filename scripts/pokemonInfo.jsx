@@ -61,7 +61,7 @@ var PokemonInfo = React.createClass({
      );
    });
     return (
-      <div>
+      <div className="pokemonInfo">
         <h2>{pokemon.name} </h2>
         <img src={pokemon.sprites.front_default} alt="Pokemon Image" />
         <h4> Type: </h4>
