@@ -8,6 +8,7 @@ import $ from 'jquery'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 var locationKeys = [];
+var locationIdx = 0;
 
 var Pokedex = React.createClass({
   getInitialState: function() {
@@ -46,14 +47,28 @@ var Pokedex = React.createClass({
     return this.props.location.pathname.split('/')[1] || 'root';
   },
   rememberRoute: function() {
+    locationKeys = locationKeys.slice(0, locationIdx);
     locationKeys.push(this.props.location.key);
+    locationIdx++;
+    console.log('push', locationKeys, locationIdx)
   },
   getTransition: function() {
-    var lastKey = locationKeys.pop();
-    if (lastKey === this.props.location.key) {
+    console.log('check', locationKeys, locationIdx)
+    // first load
+    if (locationIdx === 0) {
+      return 'routeChange';
+    }
+    if (locationKeys[locationIdx-1] === this.props.location.key) {
+      // back button
+      locationIdx--;
       return 'reverseRouteChange';
     }
-    locationKeys.push(lastKey);
+    if (locationKeys[locationIdx+1] === this.props.location.key) {
+      // forward button
+      locationIdx++;
+      return 'routeChange';
+    }
+    // push
     return 'routeChange';
   },
   render: function(){
