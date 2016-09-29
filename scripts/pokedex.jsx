@@ -40,9 +40,6 @@ var Pokedex = React.createClass({
      })
      this.setState({filteredList: filteredList});
   },
-  getSegment: function() {
-    return this.props.location.pathname.split('/')[1] || 'root';
-  },
   render: function(){
     return (
       <div className = "pokedex">
@@ -53,9 +50,8 @@ var Pokedex = React.createClass({
           </div>
 
           <div className="col-md-offset-1 col-md-6">
-            <ReactCSSTransitionGroup transitionName="routeChange" 
-              transitionEnterTimeout={600} transitionLeaveTimeout={600}>
-               {React.cloneElement(this.props.children, { key: this.getSegment() })}
+            <ReactCSSTransitionGroup transitionName="routeChange">
+               {React.cloneElement(this.props.children, { key: this.props.location.pathname })}
             </ReactCSSTransitionGroup>
           </div>
       </div>

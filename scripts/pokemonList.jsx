@@ -14,7 +14,7 @@ var PokemonList = React.createClass({
         <li
           className="list-group-item"
           key={idx}>
-          <Link to={"/" + pokemon.name + "/" + Date.now()}>{pokemon.name}</Link>
+          <Link to={"/" + pokemon.name}>{pokemon.name}</Link>
         </li>
       );
     });

@@ -14,24 +14,23 @@
 
 .pokemonInfo {
   position: absolute;
-  top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0;
 }
+
 .routeChange-enter {
-  left: 100%;
+  opacity: 0;
 }
 .routeChange-enter.routeChange-enter-active {
-  left: 0;
-  transition: left 600ms ease;
+  opacity: 1;
+  transition: opacity 600ms ease;
 }
 .routeChange-leave {
-  left: 0;
+  opacity: 1;
 }
 .routeChange-leave.routeChange-leave-active {
-  left: -100%;
-  transition: left 600ms ease;
+  opacity: 0;
+  transition: opacity 600ms ease;
 }
 
 
