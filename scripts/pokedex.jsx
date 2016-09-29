@@ -7,6 +7,8 @@ import ReactDOM from 'react-dom'
 import $ from 'jquery'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
+var locationKeys = [];
+
 var Pokedex = React.createClass({
   getInitialState: function() {
     return {originalList: [], filteredList: []};
@@ -43,17 +45,29 @@ var Pokedex = React.createClass({
   getSegment: function() {
     return this.props.location.pathname.split('/')[1] || 'root';
   },
+  rememberRoute: function() {
+    locationKeys.push(this.props.location.key);
+  },
+  getTransition: function() {
+    var lastKey = locationKeys.pop();
+    if (lastKey === this.props.location.key) {
+      return 'reverseRouteChange';
+    }
+    locationKeys.push(lastKey);
+    return 'routeChange';
+  },
   render: function(){
     return (
       <div className = "pokedex">
         <h1> ReactJS Pokedex </h1>
-          <div className="col-md-4">
+          <div className="listColumn col-md-4">
            <PokemonSearch search={this.handlePokemonSearch} />
-           <PokemonList data={this.state.filteredList} />
+           <PokemonList data={this.state.filteredList} onLink={this.rememberRoute} />
           </div>
 
           <div className="col-md-offset-1 col-md-6">
-            <ReactCSSTransitionGroup transitionName="routeChange" 
+            <ReactCSSTransitionGroup 
+              transitionName={this.getTransition()} 
               transitionEnterTimeout={600} transitionLeaveTimeout={600}>
                {React.cloneElement(this.props.children, { key: this.getSegment() })}
             </ReactCSSTransitionGroup>

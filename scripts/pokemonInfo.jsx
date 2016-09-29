@@ -14,7 +14,7 @@ var PokemonInfo = React.createClass({
     return {pokemon: blankPoke};
   },
   componentWillReceiveProps: function(nextProps) {
-    console.log("receiving props")
+    console.log("receiving props", nextProps)
     this.whoIsThatPokemon(nextProps.params.facts)
   },
   whoIsThatPokemon: function(pokemon) {

@@ -6,15 +6,16 @@ var PokemonList = React.createClass({
     if (this.props.data.length === 0){
       return null;
     }
-    console.log('pokelist render', this.props.params)
 
     var that = this;
-    var pokemonNodes = this.props.data.map(function(pokemon, idx){
+    var pokemonNodes = this.props.data.map((pokemon, idx) => {
       return(
         <li
           className="list-group-item"
           key={idx}>
-          <Link to={"/" + pokemon.name + "/" + Date.now()}>{pokemon.name}</Link>
+          <Link to={"/" + pokemon.name} onClick={this.props.onLink}>
+            {pokemon.name}
+          </Link>
         </li>
       );
     });

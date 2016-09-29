@@ -18,22 +18,53 @@
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: -1;
 }
 .routeChange-enter {
   left: 100%;
+  opacity: 0;
 }
 .routeChange-enter.routeChange-enter-active {
   left: 0;
-  transition: left 600ms ease;
+  opacity: 1;
+  transition: all 600ms ease;
 }
 .routeChange-leave {
   left: 0;
+  opacity: 1;
 }
 .routeChange-leave.routeChange-leave-active {
   left: -100%;
-  transition: left 600ms ease;
+  opacity: 0;
+  transition: all 600ms ease;
 }
 
+.reverseRouteChange-enter {
+  opacity: 0;
+  left: -100%;
+}
+.reverseRouteChange-enter.reverseRouteChange-enter-active {
+  opacity: 1;
+  left: 0;
+  transition: all 600ms ease;
+}
+.reverseRouteChange-leave {
+  left: 0;
+  opacity: 1;
+}
+.reverseRouteChange-leave.reverseRouteChange-leave-active {
+  opacity: 0;
+  left: 100%;
+  transition: all 600ms ease;
+}
+
+.pokedex {
+  overflow: hidden;
+}
+
+.listColumn {
+  background: white;
+}
 
 body {
   background: #fff;
@@ -42,6 +73,7 @@ body {
   line-height: 1.7;
   margin: 0;
   padding: 30px;
+  overflow: hidden;
 }
 
 a {
