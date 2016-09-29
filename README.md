@@ -1,18 +1,5 @@
-# pokedexSolution
+## Getting started
+`npm install`
 
-## Instructions 
-
-### Step 1 
-```
-$ git clone
-```
-
-### Step 2 
-```
-$ npm install
-```
-
-### Step 3
-```
-$ webpack --watch
-```
+To compile the app and watch for changes:
+`npm start`

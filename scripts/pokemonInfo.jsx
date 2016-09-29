@@ -71,7 +71,7 @@ var PokemonInfo = React.createClass({
         <h4> Stats: </h4>
         <ul>
           {stats}
-        </ul>fault}
+        </ul>
       </div>
     )
   }
